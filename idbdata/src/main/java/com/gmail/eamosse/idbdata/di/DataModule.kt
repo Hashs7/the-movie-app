@@ -122,6 +122,7 @@ class BasicInterceptor(
         val url = original.url
             .newBuilder()
             .addQueryParameter("api_key", apiKey)
+            .addQueryParameter("language", Locale.getDefault().isO3Language)
             .build()
 
         // Request customization: add request headers
