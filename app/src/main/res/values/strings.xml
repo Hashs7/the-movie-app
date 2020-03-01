@@ -6,8 +6,12 @@
     <string name="hello_dashboard_second">Hello DashboardSecondFragment. Arg: %1$s</string>
     <string name="hello_notifications_second">Hello NotificationsSecondFragment. Arg: %1$s</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_trending">Trending</string>
     <string name="title_notifications">Notifications</string>
 
     <string name="home_second">Movies list</string>
+    <string name="movie_detail">Détail du film</string>
+    <string name="trending_movies">Top movies</string>
+    <string name="trending_actors">Top actors</string>
+    <string name="trending_categories">Top categories</string>
 </resources>

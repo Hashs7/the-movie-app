@@ -17,6 +17,9 @@ class MovieAdapter(private val items: List<Movie>, val handler: (category: Movie
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Movie) {
             binding.item = item
+            binding.root.setOnClickListener {
+                handler(item)
+            }
         }
     }
 

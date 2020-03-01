@@ -10,13 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 
-import com.gmail.eamosse.imdb.databinding.FragmentListMoviesBinding
-import com.gmail.eamosse.imdb.ui.home.HomeFragmentDirections
+import com.gmail.eamosse.imdb.databinding.ListMoviesFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListMoviesFragment : Fragment() {
-    private val listMoviesViewModel: ListMoviesViewModel by viewModel()
-    private lateinit var binding: FragmentListMoviesBinding
+    private val movieViewModel: ListMoviesViewModel by viewModel()
+    private lateinit var binding: ListMoviesFragmentBinding
 
     private val args: ListMoviesFragmentArgs by navArgs()
 
@@ -25,7 +24,7 @@ class ListMoviesFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentListMoviesBinding.inflate(inflater, container, false).apply {
+        binding = ListMoviesFragmentBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@ListMoviesFragment
         }
         return binding.root
@@ -41,14 +40,14 @@ class ListMoviesFragment : Fragment() {
             findNavController().navigate(R.id.action_HomeSecondFragment_to_HomeFragment)
         }*/
 
-        with(listMoviesViewModel) {
+        with(movieViewModel) {
             loadMoviesFromCategory(args.myArg)
 
             movies.observe(viewLifecycleOwner, Observer {
                 binding.categoryList.adapter =
                     MovieAdapter(it) { movie ->
                         val action =
-                            HomeFragmentDirections.actionHomeFragmentToMoviesListFragment(
+                            ListMoviesFragmentDirections.actionMoviesListFragmentToMovieDetailFragment(
                                 movie.id
                             )
                         NavHostFragment.findNavController(this@ListMoviesFragment)
