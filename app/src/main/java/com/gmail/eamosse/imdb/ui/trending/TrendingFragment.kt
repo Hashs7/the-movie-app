@@ -39,7 +39,7 @@ class TrendingFragment : Fragment() {
                 binding.trendingActors.trendingItems.adapter = TrendingActorAdapter(it)
             })
             categories.observe(viewLifecycleOwner, Observer {
-                binding.trendingActors.trendingItems.adapter = TrendingCategoriesAdapter(it) {
+                binding.trendingCategories.trendingItems.adapter = TrendingCategoriesAdapter(it) {
                     print(it)
                 }
             })

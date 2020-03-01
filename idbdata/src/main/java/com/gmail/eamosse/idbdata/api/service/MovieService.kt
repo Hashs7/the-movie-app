@@ -7,6 +7,7 @@ import com.gmail.eamosse.idbdata.api.response.TokenResponse
 import com.gmail.eamosse.idbdata.api.response.TrendingActorsResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 internal interface MovieService {
@@ -18,6 +19,9 @@ internal interface MovieService {
 
     @GET("discover/movie")
     suspend fun getMoviesInCategory(@Query("with_genres") genre: Int): Response<MoviesResponse>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieWithId(@Path("movie_id") movieId:Int): Response<MovieDetailResponse>
 
     @GET("trending/movies/week")
     suspend fun getTrendingMovies(): Response<TrendingMoviesResponse>

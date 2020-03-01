@@ -65,6 +65,17 @@ class MovieRepository : KoinComponent {
         }
     }
 
+    suspend fun getMovieWithId(movieId: Int): Result<MovieDetail> {
+        return when(val result = online.getMovieWithId(movieId)) {
+            is Result.Succes -> {
+                val movie = result.data.toMovieDetail()
+                Result.Succes(movie)
+            }
+            is Result.Error -> result
+        }
+    }
+
+
     suspend fun getTrendingMovies(): Result<List<TrendingMovie>> {
         return when(val result = online.getTrendingMovies()) {
             is Result.Succes -> {

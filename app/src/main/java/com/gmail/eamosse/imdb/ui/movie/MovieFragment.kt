@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 
 import com.gmail.eamosse.imdb.databinding.MovieDetailFragmentBinding
+import com.gmail.eamosse.imdb.ui.list_movies.MovieAdapter
 import com.gmail.eamosse.imdb.ui.list_movies.MovieViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieFragment : Fragment() {
-    private val listMoviesViewModel: MovieViewModel by viewModel()
+    private val movieViewModel: MovieViewModel by viewModel()
     private lateinit var binding: MovieDetailFragmentBinding
 
     private val args: MovieFragmentArgs by navArgs()
@@ -32,20 +34,13 @@ class MovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(listMoviesViewModel) {
-            /*loadMoviesFromCategory(args.myArg)
+        with(movieViewModel) {
+            loadMovie(args.myArg)
 
-            movies.observe(viewLifecycleOwner, Observer {
-                binding.categoryList.adapter =
-                    MovieAdapter(it) { movie ->
-                        val action =
-                            HomeFragmentDirections.actionHomeFragmentToMoviesListFragment(
-                                movie.id
-                            )
-                        NavHostFragment.findNavController(this@ListMoviesFragment)
-                            .navigate(action)
-                    }
-            })*/
+            movie.observe(viewLifecycleOwner, Observer {
+                binding.item = it
+//                binding.productionCompaniesList.adapter = CompaniesAdapter(it.productionCompanies)
+            })
         }
     }
 }
